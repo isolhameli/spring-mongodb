@@ -60,6 +60,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(String id) {
+        User user = findUserById(id);
+        if (user == null){return;}
+        addressService.removeAll(user.getAddresses());
         userRepository.deleteById(id);
     }
 
